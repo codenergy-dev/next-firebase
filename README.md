@@ -29,6 +29,10 @@ Use the `Analytics` component from [`@/src/components/analytics`](/src/component
 
 > See an example in [`@/app/layout`](/app/layout.tsx).
 
+### Authentication
+
+Use the [useUser](/src/hooks/use-user.ts) hook to sign in, sign out and to get the current user.
+
 ### Google Sign-in
 
 Use the [ButtonGoogleSignIn](/src/components/button-google-signin/index.tsx) to show the Google Sign-in button.
