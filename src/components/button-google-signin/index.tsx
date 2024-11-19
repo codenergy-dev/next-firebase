@@ -1,12 +1,13 @@
+import { useUser } from '@/src/hooks/use-user'
 import './index.css'
+import { GoogleAuthProvider } from 'firebase/auth'
 
-interface ButtonGoogleSignIn {
-  onClick: () => void
-}
+const provider = new GoogleAuthProvider()
 
-export function ButtonGoogleSignIn({onClick}: ButtonGoogleSignIn) {
+export function ButtonGoogleSignIn() {
+  const {signIn} = useUser()
   return (
-    <button onClick={onClick} className="gsi-material-button" style={{width:128}}>
+    <button onClick={() => signIn(provider)} className="gsi-material-button" style={{width:128}}>
       <div className="gsi-material-button-state"></div>
       <div className="gsi-material-button-content-wrapper">
         <div className="gsi-material-button-icon">
