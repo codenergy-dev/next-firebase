@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) template with [Firebase]().
 
 ## Getting Started
 
-First, run the development server:
+First, create the `.env.local` file to configure Firebase.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+|Key|Package|Context|Notes|
+|:--|:------|:------|:----|
+FIREBASE_ADMIN_PRIVATE_KEY|firebase-admin|All
+NEXT_PUBLIC_FIREBASE_API_KEY|firebase|All
+NEXT_PUBLIC_FIREBASE_APP_ID|firebase|All
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN|firebase|All
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID|firebase|Analytics|Optional
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID|firebase|Messaging|Optional
+NEXT_PUBLIC_FIREBASE_PROJECT_ID|firebase|All
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET|firebase|Storage|Optional
+
+## Client-side
+
+Import `firebase` modules from [`@/app/firebase`](/app/firebase.ts).
+
+```js
+import { auth, firebase } from "@/app/firebase"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Analytics
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Use the `Analytics` component from [`@/src/components/analytics`](/src/components/analytics/index.tsx) to enable Firebase Analytics.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> See an example in [`@/app/layout`](/app/layout.tsx).
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Server-side
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Import `firebase-admin` modules from [`@/app/api/firebase`](/app/api/firebase.ts).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```js
+import { firebase } from "@/app/api/firebase"
+```
 
-## Deploy on Vercel
+### Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Use the function `verifyIdToken` from [`@/app/api/verify-id-token`](/app/api/verify-id-token.ts) to authenticate user requests.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```js
+import { UnauthorizedException, verifyIdToken } from "@/app/api/verify-id-token";
+
+export async function POST(request: Request) {
+  try {
+    const decodedIdToken = await verifyIdToken(request)
+    ...
+  } catch (e) {
+    if (e instanceof UnauthorizedException) {
+      return new Response(null, { status: 401 })
+    }
+    ...
+  }
+}
+```
+
+The `verifyIdToken` requires an `authorization` header in the request.
+
+```json
+{
+    "authorization": "Bearer idToken"
+}
+```
+
+> Replaces `idToken` with the user ID Token generated from Firebase. 
