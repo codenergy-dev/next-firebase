@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@/src/components/analytics";
+import { AuthState } from "@/src/components/auth-state";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Analytics/>
+      <AuthState/>
       <body>
         {children}
       </body>

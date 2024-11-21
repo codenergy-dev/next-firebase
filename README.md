@@ -48,6 +48,8 @@ import { firebase } from "@/app/api/firebase"
 
 ### Authentication
 
+#### Route Handlers
+
 Use the function `verifyIdToken` from [`@/app/api/verify-id-token`](/app/api/verify-id-token.ts) to authenticate user requests.
 
 ```js
@@ -75,3 +77,15 @@ The `verifyIdToken` requires an `authorization` header in the request.
 ```
 
 > Replaces `idToken` with the user ID Token generated from Firebase. 
+
+#### Server Components
+
+Use the [`AuthState`](/src/components/auth-state/) component to set a cookie with the ID Token on authentication state changed.
+
+> See an example in [`@/app/layout`](/app/layout.tsx).
+
+Validate the ID Token cookie in a server component using the [`getDecodedIdToken`](/src/functions/get-decoded-id-token.ts) and [`getUid`](/src/functions/get-uid.ts) functions.
+
+> `getDecodedIdToken` will return `null` if the user is not signed-in.
+
+> `getUid` will return an empty string if the user is not signed-in.
