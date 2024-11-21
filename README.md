@@ -25,7 +25,7 @@ import { auth, firebase } from "@/app/firebase"
 
 ### Analytics
 
-Use the `Analytics` component from [`@/src/components/analytics`](/src/components/analytics/index.tsx) to enable Firebase Analytics.
+Use the [`Analytics`](/src/components/analytics/index.tsx) component to enable Firebase Analytics.
 
 > See an example in [`@/app/layout`](/app/layout.tsx).
 
@@ -50,7 +50,7 @@ import { firebase } from "@/app/api/firebase"
 
 #### Route Handlers
 
-Use the function `verifyIdToken` from [`@/app/api/verify-id-token`](/app/api/verify-id-token.ts) to authenticate user requests.
+Use the function [`verifyIdToken`](/app/api/verify-id-token.ts) to authenticate user requests.
 
 ```js
 import { UnauthorizedException, verifyIdToken } from "@/app/api/verify-id-token";
