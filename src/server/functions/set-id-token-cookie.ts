@@ -11,7 +11,7 @@ export async function setIdTokenCookie(request: Request): Promise<Response> {
     const now = Math.floor(Date.now() / 1000);
     (await cookies()).set('id_token', idToken!, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV == 'production',
       sameSite: 'strict',
       expires: decodedIdToken.exp - now,
     })
