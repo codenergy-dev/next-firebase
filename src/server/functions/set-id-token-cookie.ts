@@ -13,7 +13,7 @@ export async function setIdTokenCookie(request: Request): Promise<Response> {
       httpOnly: true,
       secure: process.env.NODE_ENV == 'production',
       sameSite: 'strict',
-      expires: decodedIdToken.exp - now,
+      maxAge: decodedIdToken.exp - now,
     })
     return response
   } catch (e) {
