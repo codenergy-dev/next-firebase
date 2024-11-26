@@ -1,7 +1,7 @@
-import { verifyIdToken } from "@/app/api/verify-id-token"
 import { cookies, headers } from "next/headers"
+import { verifyIdToken } from "./verify-id-token"
 
-export async function getUid() {
+export async function getUid(): Promise<string> {
   try {
     const host = (await headers()).get('host')!
     const idToken = (await cookies()).get('id_token')?.value

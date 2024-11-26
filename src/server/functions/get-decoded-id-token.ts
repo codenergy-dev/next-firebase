@@ -1,7 +1,8 @@
-import { verifyIdToken } from "@/app/api/verify-id-token"
 import { cookies, headers } from "next/headers"
+import { verifyIdToken } from "./verify-id-token"
+import { DecodedIdToken } from "firebase-admin/auth"
 
-export async function getDecodedIdToken() {
+export async function getDecodedIdToken(): Promise<DecodedIdToken | null> {
   try {
     const host = (await headers()).get('host')!
     const idToken = (await cookies()).get('id_token')?.value

@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
-import { UnauthorizedException, verifyIdToken } from "../verify-id-token";
 import { NextResponse } from "next/server";
+import { UnauthorizedException, verifyIdToken } from "./verify-id-token";
 
-export async function POST(request: Request) {
+export async function setIdTokenCookie(request: Request): Promise<Response> {
   try {
     const decodedIdToken = await verifyIdToken(request)
     const authorization = request.headers.get('authorization')

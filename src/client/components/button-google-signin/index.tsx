@@ -1,4 +1,4 @@
-import { useUser } from '@/src/hooks/use-user'
+import { useUser } from '../../hooks/use-user'
 import './index.css'
 import { GoogleAuthProvider } from 'firebase/auth'
 

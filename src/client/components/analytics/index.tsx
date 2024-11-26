@@ -1,8 +1,6 @@
-'use client'
-
-import { firebase } from "@/app/firebase"
 import { getAnalytics, isSupported } from "firebase/analytics"
 import { useEffect } from "react"
+import { firebase } from "../../firebase"
 
 export function Analytics() {
   useEffect(() => {

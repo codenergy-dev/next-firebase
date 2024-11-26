@@ -1,6 +1,6 @@
-import { auth } from "@/app/firebase";
 import { AuthProvider, signInWithPopup, User } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { auth } from "../firebase";
 
 export function useUser() {
   const [user, setUser] = useState<User | null>(null)

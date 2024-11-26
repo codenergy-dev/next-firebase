@@ -1,8 +1,9 @@
-import { firebase } from "./firebase";
+import { DecodedIdToken } from "firebase-admin/auth"
+import { firebase } from "../firebase-admin"
 
 const auth = firebase.auth()
 
-export async function verifyIdToken(request: Request) {
+export async function verifyIdToken(request: Request): Promise<DecodedIdToken> {
   try {
     const authorization = request.headers.get('authorization')
     const idToken = authorization?.split('Bearer ')[1]

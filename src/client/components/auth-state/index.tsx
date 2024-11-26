@@ -1,8 +1,6 @@
-'use client'
-
-import { auth } from "@/app/firebase"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
+import { auth } from "../../firebase"
 
 export function AuthState() {
   const router = useRouter()
