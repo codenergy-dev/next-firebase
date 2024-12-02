@@ -14,6 +14,11 @@ export async function setIdTokenCookie(request: Request): Promise<Response> {
       secure: process.env.NODE_ENV == 'production',
       sameSite: 'strict',
       maxAge: decodedIdToken.exp - now,
+    });
+    (await cookies()).set('signed_in', now.toString(), {
+      secure: process.env.NODE_ENV == 'production',
+      sameSite: 'strict',
+      maxAge: decodedIdToken.exp - now,
     })
     return response
   } catch (e) {

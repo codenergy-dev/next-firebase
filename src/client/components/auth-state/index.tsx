@@ -10,11 +10,11 @@ export function AuthState() {
   }, [])
 
   async function onAuthStateChanged() {
-    const oldAuthState = localStorage.getItem('auth-state')
-    const newAuthState = auth.currentUser ? 'signed-in' : 'signed-out'
-    localStorage.setItem('auth-state', newAuthState)
+    const hasSignedIn = document.cookie
+      .split('; ')
+      .some(cookie => cookie.startsWith(`signed_in=`))
 
-    if (oldAuthState != newAuthState) {
+    if (auth.currentUser && !hasSignedIn) {
       const idToken = await auth.currentUser?.getIdToken()
       await fetch('/api/auth', {
         method: 'POST',
