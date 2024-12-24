@@ -17,7 +17,7 @@ export function AuthState() {
     if (auth.currentUser && !hasSignedIn) {
       signIn().then(router.refresh)
     } else if (!auth.currentUser && hasSignedIn) {
-      signOut()
+      signOut().then(router.refresh)
     }
   }
 
