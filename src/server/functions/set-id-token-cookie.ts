@@ -23,7 +23,8 @@ export async function setIdTokenCookie(request: Request): Promise<Response> {
     return response
   } catch (e) {
     console.error(e);
-    (await cookies()).delete('id_token')
+    (await cookies()).delete('id_token');
+    (await cookies()).delete('signed_in')
     if (e instanceof UnauthorizedException) {
       return new Response(null, { status: 401 })
     }
