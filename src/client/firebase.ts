@@ -1,5 +1,5 @@
 import { getApp, getApps, initializeApp } from "firebase/app"
-import { Auth, connectAuthEmulator, getAuth, GoogleAuthProvider } from "firebase/auth"
+import { Auth, connectAuthEmulator, getAuth } from "firebase/auth"
 
 const useEmulator = 
     typeof window !== 'undefined' &&
@@ -32,4 +32,4 @@ if (useEmulator) connectAuthEmulator(
     { disableWarnings: true },
 )
 
-export { firebase, auth, GoogleAuthProvider }
+export { firebase, auth }
