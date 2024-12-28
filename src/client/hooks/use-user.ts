@@ -1,4 +1,4 @@
-import { AuthProvider, signInWithPopup, User } from "firebase/auth";
+import { AuthProvider, GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 
@@ -17,9 +17,13 @@ export function useUser() {
     signInWithPopup(auth, provider)
   }
 
+  function signInWithGoogle() {
+    signInWithPopup(auth, new GoogleAuthProvider())
+  }
+
   function signOut() {
     auth.signOut()
   }
 
-  return {user, signIn, signOut}
+  return {user, signIn, signInWithGoogle, signOut}
 }
