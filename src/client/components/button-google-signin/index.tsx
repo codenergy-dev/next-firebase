@@ -1,10 +1,12 @@
-import { useUser } from '../../hooks/use-user'
 import './index.css'
 
-export function ButtonGoogleSignIn() {
-  const {signInWithGoogle} = useUser()
+interface ButtonGoogleSignIn {
+  onClick: () => void
+}
+
+export function ButtonGoogleSignIn({ onClick }: ButtonGoogleSignIn) {
   return (
-    <button onClick={signInWithGoogle} className="gsi-material-button" style={{width:128}}>
+    <button onClick={onClick} className="gsi-material-button" style={{width:128}}>
       <div className="gsi-material-button-state"></div>
       <div className="gsi-material-button-content-wrapper">
         <div className="gsi-material-button-icon">
