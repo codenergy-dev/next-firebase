@@ -6,11 +6,11 @@
   "exports": {
     "./client": {
       "import": "./dist/client/index.js",
-      "types": "./dist/client/index.js"
+      "types": "./dist/client/index.d.ts"
     },
     "./server": {
       "import": "./dist/server/index.js",
-      "types": "./dist/server/index.js"
+      "types": "./dist/server/index.d.ts"
     }
   },
   "scripts": {
